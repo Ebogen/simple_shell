@@ -14,6 +14,7 @@ int shell(list_t *environ_list, char *shell_name)
 	char **input_array;
 	int built_ret, exec_ret;
 	char *error_message[4];
+
 	error_message_init(error_message, shell_name, NULL);
 
 	while (1)
@@ -122,6 +123,7 @@ void print_error(char **error_message)
 void prompt(void)
 {
 	char *prompt = "$ ";
+
 	write(STDOUT_FILENO, prompt, _strlen(prompt) + 1);
 }
 /**
@@ -185,8 +187,8 @@ int execute(char **input_array, char *command, char *shell_name)
 	return (0);
 }
 
-/** error_message_init - a function that initialize error_message
- *                       array with given values
+/**
+ * error_message_init - a  array with given values
  * @error_message: represents an error message array
  * @shell_name: represents the first value
  * @command: represents the second value
