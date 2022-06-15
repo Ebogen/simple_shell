@@ -16,13 +16,11 @@ int shell(list_t *environ_list, char *shell_name)
 	char *error_message[4];
 
 	error_message_init(error_message, shell_name, NULL);
-
 	while (1)
 	{
 		input = get_input();
 		if (input == NULL)
 			return (0);
-
 		input_list = split_string(input, " ");
 		/*we  check for input */
 		if (input_list == NULL)
@@ -30,7 +28,6 @@ int shell(list_t *environ_list, char *shell_name)
 			free(input);
 			continue;
 		}
-
 		/*we then check if input is a built-in command */
 		built_ret = get_built(input_list, shell_name, environ_list);
 		if (built_ret != -1)
@@ -41,8 +38,6 @@ int shell(list_t *environ_list, char *shell_name)
 			else
 				return (built_ret);
 		}
-
-		/* we check if first string is a valid command */
 		error_message[1] = input_list->name;
 		full_name = get_full_name(input_list->name, environ_list);
 		if (full_name == NULL)
@@ -52,7 +47,6 @@ int shell(list_t *environ_list, char *shell_name)
 			free_input(input, input_list, NULL);
 			continue;
 		}
-
 		/*we change input_list to input_array */
 		input_array = list_to_array(input_list);
 		if (input_array == NULL)
@@ -63,7 +57,6 @@ int shell(list_t *environ_list, char *shell_name)
 			free_input(input, input_list, NULL);
 			continue;
 		}
-
 		/* we then execute the shell command */
 		exec_ret = execute(input_array, full_name, shell_name);
 		if (exec_ret < 0)
@@ -72,17 +65,13 @@ int shell(list_t *environ_list, char *shell_name)
 			free(full_name);
 			return (-exec_ret);
 		}
-
 		free(full_name);
 		free_input(input, input_list, input_array);
 	}
-
 	return (0);
 }
-
 /**
  * get_input - function that gets the input from the terminal
- *
  * Return: the value of string input, Otherwise NULL
  */
 char *get_input(void)
@@ -101,7 +90,6 @@ char *get_input(void)
 		free(buffer);
 		return (NULL);
 	}
-
 	/* we replace non-printable characters with spaces */
 	str_rep(buffer);
 
