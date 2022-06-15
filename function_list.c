@@ -1,6 +1,6 @@
 #include "main.h"
 void free_list(list_t *h);
-void free_list(list_h *h);
+void free_list(list_t *h);
 char **list_to_array(const list_t *h);
 void free_array(char **arr);
 int update_value(list_t *h, int index, const char *value);
