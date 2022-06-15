@@ -1,10 +1,10 @@
 #include "main.h"
+void error_message_init(char **error_message, char *shell_name, char *command);
 
 /**
  * shell - a function that implement shell functionality
  * @environ_list: represents the list of environment variables
  * @shell_name: represents the name of shell program
- *
  * Return: 0 success. Non-zero otherwise
  */
 int shell(list_t *environ_list, char *shell_name)
@@ -14,21 +14,19 @@ int shell(list_t *environ_list, char *shell_name)
 	char **input_array;
 	int built_ret, exec_ret;
 	char *error_message[4];
-
 	error_message_init(error_message, shell_name, NULL);
+
 	while (1)
 	{
 		input = get_input();
 		if (input == NULL)
 			return (0);
 		input_list = split_string(input, " ");
-		/*we  check for input */
 		if (input_list == NULL)
 		{
 			free(input);
 			continue;
 		}
-		/*we then check if input is a built-in command */
 		built_ret = get_built(input_list, shell_name, environ_list);
 		if (built_ret != -1)
 		{
@@ -47,7 +45,6 @@ int shell(list_t *environ_list, char *shell_name)
 			free_input(input, input_list, NULL);
 			continue;
 		}
-		/*we change input_list to input_array */
 		input_array = list_to_array(input_list);
 		if (input_array == NULL)
 		{
@@ -57,7 +54,6 @@ int shell(list_t *environ_list, char *shell_name)
 			free_input(input, input_list, NULL);
 			continue;
 		}
-		/* we then execute the shell command */
 		exec_ret = execute(input_array, full_name, shell_name);
 		if (exec_ret < 0)
 		{
@@ -90,9 +86,7 @@ char *get_input(void)
 		free(buffer);
 		return (NULL);
 	}
-	/* we replace non-printable characters with spaces */
 	str_rep(buffer);
-
 	return (buffer);
 }
 
@@ -114,14 +108,11 @@ void print_error(char **error_message)
 		{
 			if (i > 0)
 				write(STDERR_FILENO, ": ", 3);
-
 			write(STDERR_FILENO, string, _strlen(string) + 1);
-
 			if (i == 0)
 				write(STDERR_FILENO, ": 1", 4);
 		}
 	}
-
 	write(STDERR_FILENO, "\n", 2);
 }
 
@@ -131,10 +122,8 @@ void print_error(char **error_message)
 void prompt(void)
 {
 	char *prompt = "$ ";
-
 	write(STDOUT_FILENO, prompt, _strlen(prompt) + 1);
 }
-
 /**
  * free_input - function that frees a given memory buffers
  * @input: represents string input
@@ -193,7 +182,6 @@ int execute(char **input_array, char *command, char *shell_name)
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}
-
 	return (0);
 }
 
