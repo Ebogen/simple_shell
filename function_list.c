@@ -1,4 +1,10 @@
 #include "main.h"
+void free_list(list_t *h);
+void free_list(list_h *h);
+char **list_to_array(const list_t *h);
+void free_array(char **arr);
+int update_value(list_t *h, int index, const char *value);
+int delete_node_index(list_t **head, int index);
 
 /**
  * add_node_end - adds a new node at the end of a list_s list
