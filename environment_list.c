@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * create_environ - a function that creates a list of environment  *                      variables
+ * create_environ - a function that creates a list
+ * of environment variables
  * @environ: represents an array of environment variables
  * @environ_list: represents the list of environment variables
  *
@@ -32,7 +33,7 @@ list_t *create_environ(char **environ, list_t *environ_list)
 }
 
 /**
- * _getenv - a function that gets the value of an 
+ * _getenv - a function that gets the value of an
  *           environment variable
  * @environ_list: represents of environment variables list
  * @name: represents environment variable
@@ -48,7 +49,7 @@ char *_getenv(list_t *environ_list, char *name)
 		return (NULL);
 	}
 
-	while (tmp && _strcmp(tmp->name, name))  
+	while (tmp && _strcmp(tmp->name, name))
 /* we check each node for a match */
 	{
 		tmp = tmp->next;
@@ -61,7 +62,7 @@ char *_getenv(list_t *environ_list, char *name)
 }
 
 /**
- * print_environ - is a function that is used to prints all the  
+ * print_environ - is a function that is used to prints all the
  *                 environment variables
  * @environ_list: list of environment variables
  */
