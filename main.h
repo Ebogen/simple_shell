@@ -15,6 +15,7 @@
  * struct list_s - a function for singly linked list of values
  *                 for the node structure
  * @value: represents a string
+ * @name: represents a string
  * @next: this represents the next node
  *
  */
@@ -29,14 +30,14 @@ typedef struct list_s
  * struct built_s - this is a function that represent builtin
  *                  shell command
  * @name: represents our shell command
- * @func: this represents the function of our shell
+ * @fun: this represents the function of our shell
  *
  * Description: struct representing shell built-in command
  */
 typedef struct built_s
 {
 	char *name;
-	int (*func)(list_t *input_list, char *shell_name, list_t **environ_list_p);
+	int (*fun)(list_t *input_list, char *shell_name, list_t **envir_list_p);
 } built_s;
 
 /* The function used for main.c */
@@ -72,11 +73,11 @@ int execute(char **input_array, char *command, char *shell_name);
 void error_message_init(char **error_message, char *shell_name, char *command);
 
 /* built.c */
-int get_built(list_t *input_list, char *shell_name, list_t *environ_list);
-int exit_shell(list_t *input_list, char *shell_name, list_t **environ_list_p);
-int environ_func(list_t *input_list, char *shell_name, list_t **environ_list_p);
-int setenv_func(list_t *input_list, char *shell_name, list_t **environ_list_p);
-int unsetenv_fun(list_t *input_list, char *shell_name, list_t **environ_list_p);
+int get_built(list_t *input_list, char *shell_name, list_t *envir_list);
+int exit_shell(list_t *input_list, char *shell_name, list_t **envir_list_p);
+int environ_fun(list_t *input_list, char *shell_name, list_t **envir_list_p);
+int setenv_fun(list_t *input_list, char *shell_name, list_t **envir_list_p);
+int unsetenv_fun(list_t *input_list, char *shell_name, list_t **envir_list_p);
 
 /* which.c */
 char *get_full_name(char *name, list_t *environ_list);
