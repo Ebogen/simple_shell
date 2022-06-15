@@ -127,7 +127,7 @@ void print_error(char **error_message)
 			if (i > 0)
 				write(STDERR_FILENO, ": ", 3);
 
-			write(STDERR_FILENO, string, _strlen(str) + 1);
+			write(STDERR_FILENO, string, _strlen(string) + 1);
 
 			if (i == 0)
 				write(STDERR_FILENO, ": 1", 4);
