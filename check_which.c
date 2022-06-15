@@ -51,7 +51,7 @@ char *get_full_path(char *filename, list_t *path_list)
 	/* Here we check if filename starts with . or / */
 	if (filename[0] == '/' || filename[0] == '.')
 	{
-		if (is_command(filename))
+		if (valid_command(filename))
 			return (_strdup(filename));
 
 		return (NULL);
