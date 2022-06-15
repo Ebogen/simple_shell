@@ -75,7 +75,7 @@ void error_message_init(char **error_message, char *shell_name, char *command);
 /* built.c */
 int get_built(list_t *input_list, char *shell_name, list_t *envir_list);
 int exit_shell(list_t *input_list, char *shell_name, list_t **envir_list_p);
-int environ_fun(list_t *input_list, char *shell_name, list_t **envir_list_p);
+int envir_fun(list_t *input_list, char *shell_name, list_t **envir_list_p);
 int setenv_fun(list_t *input_list, char *shell_name, list_t **envir_list_p);
 int unsetenv_fun(list_t *input_list, char *shell_name, list_t **envir_list_p);
 
